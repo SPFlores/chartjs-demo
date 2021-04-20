@@ -15,6 +15,7 @@ const ChartJS = () => {
   return (
     <div className='App' style={{ textAlign: 'center', padding: '0 100px' }}>
       <h1>Let's build some charts!</h1>
+      <h4>For the video accompanying this code, go <a href='https://drive.google.com/file/d/1nyNRE7D7rphQefSrhPI9wjfyQrD1NoxO/view?usp=sharing' target='_blank' rel='noreferrer'>here</a> to access the Google Drive video</h4>
       <br />
       <button onClick={togglePatterns}>Toggle patterns</button>
       <br />
