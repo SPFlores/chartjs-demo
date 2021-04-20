@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React, { useState } from 'react'
+import { DoughnutGraph, DoughnutGraph2, HorizontalBarGraph, LineGraph } from './components/graphs'
+import { jobStatus, totalJobs, jobColors, jobPatterns, diversityProfile, totalDiversity, diversityColor, diversityPattern, candidateEngagement, engagementColor, engagementPattern, totalCandidates, candidateStatus, candidateColors, candidatePatterns } from './utils'
+import 'chartjs-plugin-datalabels'
+import { defaults } from 'react-chartjs-2'
+defaults.global.defaultFontFamily = 'Lato'
 
-function App() {
+const ChartJS = () => {
+  const [accessibilityMode, setAccessibilityMode] = useState(false)
+  const togglePatterns = _ => {
+    setAccessibilityMode(!accessibilityMode)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div className='App' style={{ textAlign: 'center', padding: '0 100px' }}>
+      <h1>Let's build some charts!</h1>
+      <br />
+      <button onClick={togglePatterns}>Toggle patterns</button>
+      <br />
+      <br />
+      <DoughnutGraph2 dataArr={candidateStatus} total={totalCandidates} colors={candidateColors} patterns={candidatePatterns} accessibilityMode={accessibilityMode} />
+      <br />
+      <br />
+      <DoughnutGraph dataArr={jobStatus} total={totalJobs} colors={jobColors} patterns={jobPatterns} accessibilityMode={accessibilityMode} status={'job'} />
+      <br />
+      <br />
+      <HorizontalBarGraph dataArr={diversityProfile} total={totalDiversity} colors={diversityColor} patterns={diversityPattern} accessibilityMode={accessibilityMode} />
+      <br />
+      <br />
+      <LineGraph dataArr={candidateEngagement} colors={engagementColor} patterns={engagementPattern} accessibilityMode={accessibilityMode} />
+      <br />
+      <br />
+    </div >
+  )
 }
 
-export default App;
+export default ChartJS
